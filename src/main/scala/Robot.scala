@@ -9,6 +9,8 @@ case class Robot(x: Int, y: Int, orientation: Orientation, board: Board) {
     case WEST  => this.copy(orientation = SOUTH)
   }
 
+  def right: Robot = this.left.left.left
+
   def isOnBoard: Boolean =
     ((0 until board.width) contains x) && ((0 until board.height) contains y)
 }

@@ -30,4 +30,9 @@ class RobotSpec extends FlatSpec {
     val robot = Robot(board.width - 1, board.height - 1, NORTH, board)
     assert(robot.isDefined)
   }
+
+  "A robot" should "report its x, y, and orientation" in new GameBoard {
+    val robot = Robot(1, 2, EAST, board)
+    assert(robot.get.toString === "1, 2, EAST")
+  }
 }

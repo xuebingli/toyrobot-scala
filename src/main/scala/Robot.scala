@@ -1,9 +1,13 @@
-class Robot(val x: Int,
-            val y: Int,
-            val orientation: Orientation,
-            board: Board) {
+case class Robot(x: Int, y: Int, orientation: Orientation, board: Board) {
 
   override def toString: String = s"$x, $y, $orientation"
+
+  def left: Robot = orientation match {
+    case NORTH => this.copy(orientation = WEST)
+    case EAST  => this.copy(orientation = NORTH)
+    case SOUTH => this.copy(orientation = EAST)
+    case WEST  => this.copy(orientation = SOUTH)
+  }
 
   def isOnBoard: Boolean =
     ((0 until board.width) contains x) && ((0 until board.height) contains y)

@@ -17,7 +17,7 @@ class RobotSpec extends FlatSpec {
   }
 
   "A new robot with negative y" should "not be defined" in new GameBoard {
-    val robot = Robot(board.width - 1, - 1, EAST, board)
+    val robot = Robot(board.width - 1, -1, EAST, board)
     assert(!robot.isDefined)
   }
 
@@ -34,5 +34,25 @@ class RobotSpec extends FlatSpec {
   "A robot" should "report its x, y, and orientation" in new GameBoard {
     val robot = Robot(1, 2, EAST, board)
     assert(robot.get.toString === "1, 2, EAST")
+  }
+
+  "A robot facing NORTH" should "turn left to WEST" in new GameBoard {
+    val robot = Robot(1, 1, NORTH, board)
+    assert(robot.map(_.left).get.orientation == WEST)
+  }
+
+  "A robot facing EAST" should "turn left to NORTH" in new GameBoard {
+    val robot = Robot(1, 1, EAST, board)
+    assert(robot.map(_.left).get.orientation == NORTH)
+  }
+
+  "A robot facing SOUTH" should "turn left to EAST" in new GameBoard {
+    val robot = Robot(1, 1, SOUTH, board)
+    assert(robot.map(_.left).get.orientation == EAST)
+  }
+
+  "A robot facing WEST" should "turn left to SOUTH" in new GameBoard {
+    val robot = Robot(1, 1, WEST, board)
+    assert(robot.map(_.left).get.orientation == SOUTH)
   }
 }

@@ -1,6 +1,22 @@
-case class Robot(x: Int, y: Int, orientation: Orientation, board: Board) {
+class Robot(val x: Int,
+            val y: Int,
+            val orientation: Orientation,
+            board: Board) {
 
   override def toString: String = s"$x, $y, $orientation"
+
+  def copy(x: Int = x,
+           y: Int = y,
+           orientation: Orientation = orientation,
+           board: Board = board): Robot =
+    Robot(x, y, orientation, board) getOrElse this
+
+  def move: Robot = orientation match {
+    case NORTH => this.copy(y = y + 1)
+    case EAST  => this.copy(x = x + 1)
+    case SOUTH => this.copy(y = y - 1)
+    case WEST  => this.copy(x = x - 1)
+  }
 
   def left: Robot = orientation match {
     case NORTH => this.copy(orientation = WEST)

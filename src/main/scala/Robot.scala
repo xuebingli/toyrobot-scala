@@ -30,9 +30,8 @@ class Robot(val x: Int,
                    board: Board = board): Robot =
     Robot(x, y, orientation, board) getOrElse this
 
-  private def isOnBoard: Boolean = {
+  private def isOnBoard: Boolean =
     ((0 until board.width) contains x) && ((0 until board.height) contains y)
-  }
 }
 
 object Robot {

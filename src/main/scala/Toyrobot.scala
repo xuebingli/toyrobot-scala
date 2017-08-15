@@ -3,8 +3,7 @@ import java.io.{FileNotFoundException, IOException}
 
 object Toyrobot extends App {
   def parsePlaceCommand(command: String): (Int, Int, Orientation) = {
-    val Array(_, info) = command.split(" ")
-    val Array(x, y, orientation) = info.split(",")
+    val Array(x, y, orientation) = command.split(" ").last.split(",")
     return (x.toInt, y.toInt, Orientation.fromString(orientation))
   }
 

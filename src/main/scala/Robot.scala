@@ -3,7 +3,10 @@ class Robot(val x: Int,
             val orientation: Orientation,
             board: Board) {
 
-  def report: Unit = println(s"$x, $y, $orientation")
+  def report: Robot = {
+    println(s"$x, $y, $orientation")
+    this
+  }
 
   def move: Robot = orientation match {
     case NORTH => copy(y = y + 1)

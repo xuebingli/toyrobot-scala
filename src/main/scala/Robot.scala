@@ -3,7 +3,7 @@ class Robot(val x: Int,
             val orientation: Orientation,
             board: Board) {
 
-  override def toString: String = s"$x, $y, $orientation"
+  def report: Unit = println(s"$x, $y, $orientation")
 
   def copy(x: Int = x,
            y: Int = y,

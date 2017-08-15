@@ -32,8 +32,12 @@ class RobotSpec extends FlatSpec {
   }
 
   "A robot" should "report its x, y, and orientation" in new GameBoard {
-    val robot = Robot(1, 2, EAST, board).get
-    assert(robot.toString === "1, 2, EAST")
+    val stream = new java.io.ByteArrayOutputStream()
+    Console.withOut(stream) {
+      val robot = Robot(1, 2, EAST, board).get
+      robot.report
+    }
+    assert(stream.toString === "1, 2, EAST\n")
   }
 
   "A robot facing NORTH" should "turn left to WEST" in new GameBoard {

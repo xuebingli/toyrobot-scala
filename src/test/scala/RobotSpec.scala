@@ -31,19 +31,6 @@ class RobotSpec extends FlatSpec {
     assert(robot.isDefined)
   }
 
-  "A robot to be placed off board" should "ignore the instruction" in new GameBoard {
-    val robot = Robot(1, 1, SOUTH, board).get
-    assert(robot.place(1, board.height, NORTH) === robot)
-  }
-
-  "A robot to be placed on board" should "follow the instruction" in new GameBoard {
-    val robot = Robot(1, 1, SOUTH, board).get
-    val newRobot = robot.place(2, 2, NORTH)
-    assert(newRobot.x === 2)
-    assert(newRobot.y === 2)
-    assert(newRobot.orientation === NORTH)
-  }
-
   "A robot" should "report its x, y, and orientation" in new GameBoard {
     val stream = new java.io.ByteArrayOutputStream()
     Console.withOut(stream) {

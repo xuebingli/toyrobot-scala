@@ -11,9 +11,6 @@ class Robot(val x: Int,
            board: Board = board): Robot =
     Robot(x, y, orientation, board) getOrElse this
 
-  def place(newX: Int, newY: Int, newOrientation: Orientation): Robot =
-    this.copy(newX, newY, newOrientation)
-
   def move: Robot = orientation match {
     case NORTH => this.copy(y = y + 1)
     case EAST  => this.copy(x = x + 1)
